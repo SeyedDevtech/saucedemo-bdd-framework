@@ -1,0 +1,26 @@
+{
+    "name":  "saucedemo-bdd-framework",
+    "version":  "1.0.0",
+    "description":  "BDD UI automation framework for https://www.saucedemo.com (Playwright + Cucumber + JavaScript)",
+    "private":  true,
+    "scripts":  {
+                    "install:browsers":  "playwright install chromium",
+                    "test":  "cucumber-js",
+                    "test:smoke":  "cucumber-js --tags @smoke",
+                    "test:negative":  "cucumber-js --tags @negative",
+                    "test:headed":  "cross-env HEADLESS=false cucumber-js",
+                    "test:firefox":  "cross-env BROWSER=firefox cucumber-js",
+                    "test:parallel":  "cucumber-js --parallel 2",
+                    "dry-run":  "cucumber-js --dry-run"
+                },
+    "dependencies":  {
+                         "dotenv":  "^18.0.8",
+                         "pg":  "^8.23.1"
+                     },
+    "devDependencies":  {
+                            "@cucumber/cucumber":  "^13.3.0",
+                            "@playwright/test":  "^1.64.1",
+                            "cross-env":  "^10.1.0",
+                            "playwright":  "^1.64.1"
+                        }
+}

@@ -1,0 +1,41 @@
+import { World, setWorldConstructor } from '@cucumber/cucumber';
+import type { IWorldOptions } from '@cucumber/cucumber';
+import type { Browser, BrowserContext, Page } from 'playwright';
+import { CartPage } from '../pages/CartPage';
+import { CheckoutPage } from '../pages/CheckoutPage';
+import { LoginPage } from '../pages/LoginPage';
+import { ProductsPage } from '../pages/ProductsPage';
+
+/**
+ * One World instance is created per scenario. It carries the browser objects and
+ * lazily creates page objects, so step files only ever say `this.loginPage.login(...)`.
+ */
+export class CustomWorld extends World {
+  browser!: Browser;
+  context!: BrowserContext;
+  page!: Page;
+
+  private _loginPage?: LoginPage;
+  private _productsPage?: ProductsPage;
+  private _cartPage?: CartPage;
+  private _checkoutPage?: CheckoutPage;
+
+  constructor(options: IWorldOptions) {
+    super(options);
+  }
+
+  get loginPage(): LoginPage {
+    return (this._loginPage ??= new LoginPage(this.page));
+  }
+  get productsPage(): ProductsPage {
+    return (this._productsPage ??= new ProductsPage(this.page));
+  }
+  get cartPage(): CartPage {
+    return (this._cartPage ??= new CartPage(this.page));
+  }
+  get checkoutPage(): CheckoutPage {
+    return (this._checkoutPage ??= new CheckoutPage(this.page));
+  }
+}
+
+setWorldConstructor(CustomWorld);

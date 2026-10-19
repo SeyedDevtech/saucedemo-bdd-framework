@@ -1,0 +1,14 @@
+{
+  "valid": {
+    "firstName": "Ameer",
+    "lastName": "Salman",
+    "postalCode": "600001"
+  },
+  "products": {
+    "backpack": "Sauce Labs Backpack"
+  },
+  "messages": {
+    "orderComplete": "Thank you for your order!",
+    "invalidLogin": "Username and password do not match any user in this service"
+  }
+}
